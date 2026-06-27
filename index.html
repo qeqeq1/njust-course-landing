@@ -1,0 +1,247 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>梨课程</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preload" as="image" href="https://course-cdn.njust.store/NJUSTSchedule/imgs/Calendar.jpg">
+</head>
+
+<body>
+
+    <!-- ═══════════════════════════════════════════════════════
+         HERO — 巨幕区
+         ═══════════════════════════════════════════════════════ -->
+    <section class="hero">
+        <div class="wrap">
+            <h1 class="heading-xl">欢迎使用<span style="white-space:nowrap;">梨课程</span></h1>
+            <p class="body-text">
+                专为南京理工大学打造。<br>欢迎本科生和研究生使用，<br>课表、考试、成绩，一览无余。
+            </p>
+            <div class="btn-group">
+                <div class="btn-stack">
+                    <button id="btn-download" class="btn btn--fill" data-href="https://course-cdn.njust.store/NJUSTSchedule/releases/download/v1.1.3/app-release.apk?from=landing">
+                        下载安装包&ensp;(<span id="apk-version">loading...</span>)
+                    </button>
+                    <p class="ios-note" style="margin-top:6px;">
+                        支持 Android 及 Harmony OS
+                    </p>
+                </div>
+                <div class="btn-stack">
+                    <a class="btn btn--text" href="https://course.njust.store" target="_blank" rel="noopener">
+                        访问网页版&ensp;<span class="arrow">→</span>
+                    </a>
+                    <p class="ios-note" style="margin-top:6px;position:relative;">
+                        iOS 用户请使用网页版
+                        <span class="help-tip" id="ios-help">?</span>
+                    </p>
+                    <div class="help-popover" id="ios-help-popover">因 Apple 不开放中国大陆设备的侧载权限，且 App Store 上架需缴纳 699 元年费，iOS 用户请使用网页版。</div>
+                </div>
+            </div>
+            <p class="ios-note" style="margin-top:16px;">
+                使用梨课程即表示你同意我们的<a href="privacy.html" target="_blank" style="color:#06c;">隐私政策</a>
+            </p>
+        </div>
+
+        <!-- 首屏截图展示 -->
+        <div class="showcase" id="showcase">
+            <div class="showcase-track" id="showcase-track">
+                <div class="mockup-item">
+                    <div class="mockup-frame">
+                        <img src="assest/img/schedule-all.jpg" alt="完整课表截图" loading="eager">
+                    </div>
+                    <span class="mockup-caption">完整课表</span>
+                </div>
+                <div class="mockup-item">
+                    <div class="mockup-frame">
+                        <img src="assest/img/schedule.jpg" alt="课表界面截图" loading="eager">
+                    </div>
+                    <span class="mockup-caption">课表查询</span>
+                </div>
+                <div class="mockup-item">
+                    <div class="mockup-frame">
+                        <img src="assest/img/tool.jpg" alt="工具界面截图" loading="eager">
+                    </div>
+                    <span class="mockup-caption">功能面板</span>
+                </div>
+                <div class="mockup-item">
+                    <div class="mockup-frame">
+                        <img src="assest/img/score.jpg" alt="成绩查询截图" loading="eager">
+                    </div>
+                    <span class="mockup-caption">成绩查询</span>
+                </div>
+            </div>
+            <div class="showcase-dots" id="showcase-dots">
+                <button class="active" data-index="0" aria-label="第 1 张"></button>
+                <button data-index="1" aria-label="第 2 张"></button>
+                <button data-index="2" aria-label="第 3 张"></button>
+                <button data-index="3" aria-label="第 4 张"></button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════
+         BENTO — 模块化卡片组
+         ═══════════════════════════════════════════════════════ -->
+    <section class="section">
+        <div class="wrap">
+
+            <!-- ── 卡片 A：登录教务账号 (全宽) ── -->
+            <div class="card card--setup card--span-2 mb-24">
+                <div class="card-body">
+                    <p class="eyebrow">第一步</p>
+                    <h2 class="heading-md">登录教务账号。</h2>
+                    <p class="body-text mt-16">
+                        使用<strong>教务处网站</strong>的账号密码登录。部分年级账号可能没有 <code
+                            style="background:#f5f5f7; border-radius:4px; padding:1px 6px;">njust</code>
+                        后缀，部分年级账号可能是<strong>学号</strong>。如遇登录失败请尝试调整账号格式。
+                    </p>
+                    <p class="body-text" style="margin-top:6px;">
+                        建议前往<a href="https://jwc.njust.edu.cn" target="_blank" rel="noopener"
+                            style="color:#06c;">教务处网站</a>修改初始密码，保障账号安全。
+                    </p>
+                </div>
+                <div class="phone-ph">
+                    <img src="assest/img/helper/login.jpg" alt="登录界面截图"
+                        style="width:100%;height:100%;object-fit:cover;object-position:top;">
+                </div>
+            </div>
+
+            <!-- ── 卡片：定下起点 (全宽) ── -->
+            <div class="card card--setup card--span-2 mb-24">
+                <div class="card-body">
+                    <p class="eyebrow">第二步 · 重要</p>
+                    <h2 class="heading-md">定下起点。</h2>
+                    <p class="body-text mt-16">
+                        请先通过<strong>应用 → 校历</strong>查看当前学期的开始日期，再前往<strong>应用 → 设置</strong>，将开学日期配置为本学期第一天。
+                    </p>
+                    <p class="mt-16" style="font-size:19px; color: var(--text);">
+                        当前学期&ensp;
+                        <span class="highlight">2025-2026-2</span>
+                        &ensp;·&ensp;开学日期&ensp;
+                        <span class="highlight">3 月 2 日</span>
+                    </p>
+                    <div style="width:100%;max-width:360px;margin-top:16px;aspect-ratio:16/9;background:#e8e8ed;border-radius:14px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,.08);">
+                        <img src="https://course-cdn.njust.store/NJUSTSchedule/imgs/Calendar.jpg" alt="校历截图" loading="lazy"
+                            style="width:100%;height:100%;object-fit:cover;border-radius:14px;cursor:pointer;transition:opacity 0.4s;opacity:0;"
+                            class="lightbox-trigger" onload="this.style.opacity='1'" onerror="this.parentElement.style.display='none'">
+                    </div>
+                    <span class="warn-tag" style="margin-top:16px;">⚠ 此项至关重要，不设置将导致课表、考试等出现难以预料的错误</span>
+                </div>
+                <div class="phone-ph">
+                    <img src="assest/img/helper/start-time.jpg" alt="设置开学日期截图"
+                        style="width:100%;height:100%;object-fit:cover;object-position:top;">
+                </div>
+            </div>
+
+            <!-- ── 卡片 B + C：双列 ── -->
+            <div class="bento mb-24">
+                <!-- 卡片 B：安全与隐私 -->
+                <div class="card card--half">
+                    <div class="card-icon">🔒</div>
+                    <h3 class="heading-sm">数据，只属于你。</h3>
+                    <p class="body-text mt-8">
+                        服务器不保存任何数据，所有信息仅存储在你的设备中。
+                    </p>
+                    <p class="body-text" style="margin-top:4px; color: var(--accent-color); font-weight: 500;">
+                        网页版用户请勿清理浏览器缓存，否则需重新添加。
+                    </p>
+                </div>
+
+                <!-- 卡片 C：课表来源 -->
+                <div class="card card--half">
+                    <div class="card-icon">📋</div>
+                    <h3 class="heading-sm">课表从哪来。</h3>
+                    <p class="body-text mt-8">
+                        所有数据完全来源于<strong>NJUST 教务处</strong>。若新学期课表为空，系教务处尚未为你排课，请耐心等待。
+                    </p>
+                    <p class="body-text" style="margin-top:4px;">
+                        一切信息请以<a href="https://jwc.njust.edu.cn" target="_blank" rel="noopener"
+                            style="color:#06c;">教务处官网</a>为准，本工具仅供参考。
+                    </p>
+                </div>
+            </div>
+
+            <!-- ── 卡片 D：特殊边界说明 (全宽) ── -->
+            <div class="card card--limits">
+                <div class="card-body">
+                    <p class="eyebrow">须知</p>
+                    <h2 class="heading-md">了解它的边界。</h2>
+                    <ul>
+                        <li>请定期点击<strong>重新同步</strong>，以保持课表和成绩为最新数据。</li>
+                        <li>空闲教室仅支持<strong>本科生</strong>查询<strong>当天</strong>教室，不支持其他日期及研究生查询。</li>
+                        <li>新学期无课表系教务处尚未排课，一切信息请以<strong>教务处官网</strong>为准。</li>
+                        <li>数据完全来源于 NJUST 教务处，仅供参考。</li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- ═══════════════════════════════════════════════════════
+         COMMUNITY — 服务与支持
+         ═══════════════════════════════════════════════════════ -->
+    <section class="section">
+        <div class="wrap wrap--narrow">
+            <p class="eyebrow" style="text-align:center;">保持连接</p>
+            <div class="community-card">
+                <div>
+                    <h3 class="heading-sm">梨课程反馈群 · 3 群</h3>
+                    <p class="desc">群号：1095467610（保持更新）</p>
+                </div>
+                <a class="btn btn--fill" href="https://qm.qq.com/q/psyzkPd3d8" target="_blank" rel="noopener">
+                    加入 QQ 群
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════
+         FOOTER — Apple 风格免责页脚
+         ═══════════════════════════════════════════════════════ -->
+    <footer class="site-footer">
+        <p class="footer-text">
+            一切信息请以<a href="https://jwc.njust.edu.cn" target="_blank" rel="noopener">教务处官网</a>为准。本软件为第三方辅助工具，数据完全来源于
+            NJUST 教务处，仅供参考。<br>
+            使用梨课程即表示你已知晓上述注意事项。
+        </p>
+        <div class="footer-divider"></div>
+        <p class="footer-text">
+            Copyright &copy; 2026 梨课程 · 为 NJUST 学子而生。保留所有权利。
+        </p>
+    </footer>
+    <!-- ═══════════ 下载确认弹窗 ═══════════ -->
+    <div class="dl-modal" id="dl-modal">
+        <div class="dl-modal-card">
+            <h3 class="dl-modal-title">下载前，请留意</h3>
+            <ol class="dl-modal-steps">
+                <li>使用<strong>浏览器</strong>打开下载链接，<strong>不要在 QQ 和微信内打开</strong></li>
+                <li>下载后<strong>忽略风险提示</strong>，继续安装</li>
+                <li>安装后登录账号。账号密码为<strong>教务处系统</strong>（<a href="http://202.119.81.113:8080/" target="_blank" rel="noopener">http://202.119.81.113:8080/</a>）的密码，<strong>不是</strong>智慧理工密码。默认密码为 <code>学号@Njust</code> 或 <code>学号</code>。如果忘记密码，请联系辅导员或教务处修改密码</li>
+                <li>请查看<a class="lightbox-trigger" data-lightbox="https://course-cdn.njust.store/NJUSTSchedule/imgs/Calendar.jpg" style="color:#06c;cursor:pointer;"><strong>校历</strong></a>的学期开始日期，并在<strong>应用 → 设置</strong>中设置学期开始日期，否则会有不可预料的后果</li>
+                <li>应用内「<strong>个人 → 右上角 <span class="exclaim-btn">!</span> 图标</strong>」可以检查更新</li>
+            </ol>
+            <p class="dl-modal-disclaimer">点击下载按钮即表示你理解并接受我们的<a href="privacy.html" target="_blank" style="color:#06c;">隐私政策</a></p>
+            <div class="dl-modal-actions">
+                <button class="btn btn--text" id="dl-cancel">取消</button>
+                <a id="dl-confirm" class="btn btn--fill" href="https://course-cdn.njust.store/NJUSTSchedule/releases/download/v1.1.3/app-release.apk?from=landing" target="_blank" rel="noopener">确认下载</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══════════ Lightbox ═══════════ -->
+    <div class="lightbox" id="lightbox">
+        <button class="lightbox-close" id="lightbox-close" aria-label="关闭">✕</button>
+        <img src="" alt="" id="lightbox-img">
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
