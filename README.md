@@ -24,12 +24,12 @@
 ├── script.js       # 交互逻辑
 ├── privacy.html    # 隐私政策页面
 ├── assest/img/     # 截图与引导图片
-└── latest.json     # CDN 版本描述文件（sync.py 自动生成）
+└── latest.json     # CDN 版本描述文件
 ```
 
 ## 部署
 
-将除 `sync.py` 外的所有文件上传至静态服务器即可。确保 `latest.json` 可通过 `https://your-cdn/latest.json` 访问。
+将所有文件上传至静态服务器即可。确保 `latest.json` 可通过 `https://your-cdn/latest.json` 访问。
 
 ## 许可证
 
