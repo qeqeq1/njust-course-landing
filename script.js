@@ -79,36 +79,6 @@
     });
 })();
 
-/* ── Lightbox ── */
-(function () {
-    var lb    = document.getElementById('lightbox');
-    var lbImg = document.getElementById('lightbox-img');
-    var close = document.getElementById('lightbox-close');
-
-    function open(src) {
-        lbImg.src = src;
-        lb.classList.add('open');
-        document.body.style.overflow = 'hidden';
-    }
-    function shut() {
-        lb.classList.remove('open');
-        document.body.style.overflow = '';
-    }
-    close.addEventListener('click', shut);
-    lb.addEventListener('click', function (e) {
-        if (e.target === lb) shut();
-    });
-    document.addEventListener('keydown', function (e) {
-        if (e.key === 'Escape' && lb.classList.contains('open')) shut();
-    });
-
-    document.querySelectorAll('.mockup-frame img, .phone-ph img, .lightbox-trigger').forEach(function (el) {
-        el.addEventListener('click', function (e) {
-            if (el.tagName === 'IMG') { open(el.src); }
-            else { e.preventDefault(); open(el.getAttribute('data-lightbox') || el.href); }
-        });
-    });
-
     /* ── iOS help tooltip ── */
     (function () {
         var tip = document.getElementById('ios-help');
