@@ -13,20 +13,25 @@
         span.textContent = ver;
     }
 
-    fetch('https://course-cdn.njust.store/latest.json')
+    /* 先显示默认版本号，避免一直 loading */
+    apply(fallUrl, fallVer);
+
+    var controller = new AbortController();
+    var timeout = setTimeout(function () { controller.abort(); }, 5000);
+
+    fetch('https://course-cdn.njust.store/latest.json', { signal: controller.signal })
         .then(function (r) {
             if (!r.ok) throw new Error(r.status);
             return r.json();
         })
         .then(function (data) {
+            clearTimeout(timeout);
             if (data.download_url && data.version) {
                 apply(data.download_url, data.version);
-                return;
             }
-            throw new Error('invalid');
         })
         .catch(function () {
-            apply(fallUrl, fallVer);
+            /* 已显示默认版本号，静默失败 */
         });
 })();
 
@@ -109,7 +114,6 @@
             pop.classList.remove('show');
         });
     })();
-})();
 
 /* ── Carousel ── */
 (function () {
