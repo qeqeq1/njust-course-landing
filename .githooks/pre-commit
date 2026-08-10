@@ -1,0 +1,6 @@
+#!/bin/bash
+# Replace {{COMMIT_HASH}} placeholder with actual git hash before each commit
+
+HASH=$(git rev-parse --short HEAD 2>/dev/null || echo "0000000")
+sed -i "s/{{COMMIT_HASH}}/${HASH}/g" index.html
+git add index.html
