@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>梨课程</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="assest/lib/viewer.min.css">
     <link rel="preload" as="image" href="https://course-cdn.njust.store/NJUSTSchedule/imgs/Calendar.jpg">
 </head>
 
@@ -50,7 +51,7 @@
             <div class="showcase-track" id="showcase-track">
                 <div class="mockup-item">
                     <div class="mockup-frame">
-                        <a data-fslightbox="screenshots" href="assest/img/schedule-all.jpg">
+                        <a href="assest/img/schedule-all.jpg">
                             <img src="assest/img/schedule-all.jpg" alt="完整课表截图" loading="eager">
                         </a>
                     </div>
@@ -58,7 +59,7 @@
                 </div>
                 <div class="mockup-item">
                     <div class="mockup-frame">
-                        <a data-fslightbox="screenshots" href="assest/img/schedule.jpg">
+                        <a href="assest/img/schedule.jpg">
                             <img src="assest/img/schedule.jpg" alt="课表界面截图" loading="eager">
                         </a>
                     </div>
@@ -66,7 +67,7 @@
                 </div>
                 <div class="mockup-item">
                     <div class="mockup-frame">
-                        <a data-fslightbox="screenshots" href="assest/img/tool.jpg">
+                        <a href="assest/img/tool.jpg">
                             <img src="assest/img/tool.jpg" alt="工具界面截图" loading="eager">
                         </a>
                     </div>
@@ -74,7 +75,7 @@
                 </div>
                 <div class="mockup-item">
                     <div class="mockup-frame">
-                        <a data-fslightbox="screenshots" href="assest/img/score.jpg">
+                        <a href="assest/img/score.jpg">
                             <img src="assest/img/score.jpg" alt="成绩查询截图" loading="eager">
                         </a>
                     </div>
@@ -94,7 +95,7 @@
          BENTO — 模块化卡片组
          ═══════════════════════════════════════════════════════ -->
     <section class="section">
-        <div class="wrap">
+        <div class="wrap" id="guide-gallery">
 
             <!-- ── 卡片 A：登录教务账号 (全宽) ── -->
             <div class="card card--setup card--span-2 mb-24">
@@ -119,7 +120,7 @@
                     </p>
                 </div>
                 <div class="phone-ph">
-                    <a data-fslightbox="helper" href="assest/img/helper/login.jpg">
+                    <a href="assest/img/helper/login.jpg">
                         <img src="assest/img/helper/login.jpg" alt="登录界面截图"
                             style="width:100%;height:100%;object-fit:cover;object-position:top;">
                     </a>
@@ -136,17 +137,14 @@
                     </p>
                     <p class="mt-16" style="font-size:19px; color: var(--text);">
                         当前学期&ensp;
-                        <span class="highlight">2025-2026-3（小学期）</span>
+                        <span class="highlight">2026-2027-1（秋季学期）</span>
                         &ensp;·&ensp;开学日期&ensp;
                         <span class="highlight">8 月 24 日</span>
                     </p>
                     <p style="font-size:15px; color: var(--text); margin-top:4px;">
-                        小学期结束日期：9 月 13 日&ensp;·&ensp;随后为&ensp;
-                        <span class="highlight">2026-2027-1（秋季学期）</span>
-                        &ensp;·&ensp;开学日期&ensp;
-                        <span class="highlight">9 月 14 日</span>
+                        新学期课表陆续公布中，如未同步到新课表请耐心等待教务处排课。
                     </p>
-                    <a data-fslightbox href="https://course-cdn.njust.store/NJUSTSchedule/imgs/Calendar.jpg"
+                    <a href="https://course-cdn.njust.store/NJUSTSchedule/imgs/Calendar.jpg"
                        style="display:block;width:100%;max-width:360px;margin-top:16px;aspect-ratio:16/9;background:#e8e8ed;border-radius:14px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,.08);">
                         <img src="https://course-cdn.njust.store/NJUSTSchedule/imgs/Calendar.jpg" alt="校历截图（点击查看大图）" loading="lazy"
                             style="width:100%;height:100%;object-fit:cover;border-radius:14px;transition:opacity 0.4s;opacity:0;"
@@ -155,7 +153,7 @@
                     <span class="warn-tag" style="margin-top:16px;">⚠ 此项至关重要，不设置将导致课表、考试等出现难以预料的错误</span>
                 </div>
                 <div class="phone-ph">
-                    <a data-fslightbox="helper" href="assest/img/helper/start-time.jpg">
+                    <a href="assest/img/helper/start-time.jpg">
                         <img src="assest/img/helper/start-time.jpg" alt="设置开学日期截图"
                             style="width:100%;height:100%;object-fit:cover;object-position:top;">
                     </a>
@@ -245,7 +243,7 @@
             &ensp;|&ensp;
             <a href="privacy.html" target="_blank" rel="noopener">隐私政策</a>
             &ensp;|&ensp;
-            <span class="commit-hash">build: 526de40</span>
+            <span class="commit-hash">build: 93df3e3</span>
         </p>
     </footer>
     <!-- ═══════════ 下载确认弹窗 ═══════════ -->
@@ -256,7 +254,7 @@
                 <li>使用<strong>浏览器</strong>打开下载链接，<strong>不要在 QQ 和微信内打开</strong></li>
                 <li>下载后<strong>忽略风险提示</strong>，继续安装</li>
                 <li>安装后登录账号。<strong>本科生</strong>请使用<strong>教务系统</strong>（<a href="http://202.119.81.112:8080/" target="_blank" rel="noopener">http://202.119.81.112:8080/</a>）的账号密码，<strong>不是</strong>智慧理工（<a href="https://ids.njust.edu.cn" target="_blank" rel="noopener">ids.njust.edu.cn</a>）的密码。默认密码为 <code>学号@Njust</code> 或 <code>学号</code>。如果忘记密码，请联系辅导员或教务处修改密码</li>
-                <li>请查看<a data-fslightbox href="https://course-cdn.njust.store/NJUSTSchedule/imgs/Calendar.jpg" style="color:#06c;cursor:pointer;"><strong>校历</strong></a>的学期开始日期，并在<strong>应用 → 设置</strong>中设置学期开始日期，否则会有不可预料的后果</li>
+                <li>请在<strong>应用 → 设置</strong>中将<strong>开学日期</strong>设置为本学期第一天，否则会有不可预料的后果。秋季学期（寒假前）为 <strong>2026-2027-1</strong>，开学日期 <strong>8 月 24 日</strong>；春季学期（寒假后）为 <strong>2026-2027-2</strong>，开学日期 <strong>2027 年 2 月 22 日</strong>。设置前可对照<a id="modal-calendar" href="https://course-cdn.njust.store/NJUSTSchedule/imgs/Calendar.jpg" style="color:#06c;cursor:pointer;"><strong>校历</strong><img class="lightbox-trigger" src="https://course-cdn.njust.store/NJUSTSchedule/imgs/Calendar.jpg" alt="" aria-hidden="true"></a>核对</li>
                 <li>应用内「<strong>个人 → 右上角 <span class="exclaim-btn">!</span> 图标</strong>」可以检查更新</li>
             </ol>
             <p class="dl-modal-disclaimer">点击下载按钮即表示你理解并接受我们的<a href="privacy.html" target="_blank" style="color:#06c;">隐私政策</a></p>
@@ -267,7 +265,7 @@
         </div>
     </div>
 
-    <script src="assest/lib/fslightbox.js"></script>
+    <script src="assest/lib/viewer.min.js"></script>
     <script src="script.js"></script>
 
 </body>

@@ -172,3 +172,103 @@
         dots.forEach(function (d, j) { d.classList.toggle('active', j === 0); });
     });
 })();
+
+/* ── 图片灯箱（Viewer.js）：支持滚轮 / 按钮 / 双击缩放与拖动 ── */
+(function () {
+    if (typeof Viewer === 'undefined') return;
+
+    var options = {
+        url: 'src',
+        zIndex: 10000,
+        navbar: true,
+        title: false,
+        tooltip: false,
+        movable: true,
+        zoomable: true,
+        zoomOnWheel: true,
+        zoomOnTouch: true,
+        toggleOnDblclick: true,
+        slideOnTouch: true,
+        keyboard: true,
+        zoomRatio: 0.4,
+        minZoomRatio: 0.2,
+        maxZoomRatio: 8,
+        toolbar: {
+            zoomIn: 1,
+            zoomOut: 1,
+            oneToOne: 1,
+            reset: 1,
+            prev: 1,
+            next: 1,
+            play: 0,
+            rotateLeft: 0,
+            rotateRight: 0,
+            flipHorizontal: 0,
+            flipVertical: 0
+        }
+    };
+
+    ['showcase-track', 'guide-gallery'].forEach(function (id) {
+        var el = document.getElementById(id);
+        if (!el) return;
+        var imgs = el.querySelectorAll('img');
+        if (!imgs.length) return;
+
+        var viewer = new Viewer(el, options);
+
+        /* 显式接管点击：阻止 <a> 直接跳转，确保稳定唤起灯箱 */
+        Array.prototype.forEach.call(imgs, function (img, i) {
+            img.style.cursor = 'zoom-in';
+            img.addEventListener('click', function (e) {
+                e.preventDefault();
+                viewer.view(i);
+            });
+        });
+    });
+
+    /* 下载弹窗内的校历：隐藏缩略图 + 点击文字唤起灯箱 */
+    var modalCard = document.querySelector('.dl-modal-card');
+    var modalLink = document.getElementById('modal-calendar');
+    var modal = document.getElementById('dl-modal');
+    if (modalCard && modalLink && modalCard.querySelector('img')) {
+        var modalViewer = new Viewer(modalCard, {
+            url: 'src',
+            zIndex: 10000,
+            hidden: function () {
+                /* 关闭灯箱后恢复下载弹窗 */
+                if (modal) modal.classList.add('open');
+            },
+            navbar: false,
+            title: false,
+            tooltip: false,
+            movable: true,
+            zoomable: true,
+            zoomOnWheel: true,
+            zoomOnTouch: true,
+            toggleOnDblclick: true,
+            keyboard: true,
+            zoomRatio: 0.4,
+            minZoomRatio: 0.2,
+            maxZoomRatio: 8,
+            toolbar: {
+                zoomIn: 1,
+                zoomOut: 1,
+                oneToOne: 1,
+                reset: 1,
+                prev: 0,
+                next: 0,
+                play: 0,
+                rotateLeft: 0,
+                rotateRight: 0,
+                flipHorizontal: 0,
+                flipVertical: 0
+            }
+        });
+        modalLink.addEventListener('click', function (e) {
+            e.preventDefault();
+            /* 先收起下载弹窗，避免遮挡灯箱 */
+            if (modal) modal.classList.remove('open');
+            modalViewer.view(0);
+        });
+    }
+})();
