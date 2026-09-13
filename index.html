@@ -23,7 +23,8 @@
             </p>
             <div class="btn-group">
                 <div class="btn-stack">
-                    <button id="btn-download" class="btn btn--fill" data-href="https://course-cdn.njust.store/NJUSTSchedule/releases/download/v1.1.3/app-release.apk?from=landing">
+                    <button id="btn-download" class="btn btn--fill"
+                        data-href="https://course-cdn.njust.store/NJUSTSchedule/releases/download/v1.1.4/app-release.apk?from=landing">
                         下载安装包&ensp;(<span id="apk-version">loading...</span>)
                     </button>
                     <p class="ios-note" style="margin-top:6px;">
@@ -38,7 +39,8 @@
                         iOS 用户请使用网页版
                         <span class="help-tip" id="ios-help">?</span>
                     </p>
-                    <div class="help-popover" id="ios-help-popover">因 Apple 不开放中国大陆设备的侧载权限，且 App Store 上架需缴纳 699 元年费，iOS 用户请使用网页版。</div>
+                    <div class="help-popover" id="ios-help-popover">因 Apple 不开放中国大陆设备的侧载权限，且 App Store 上架需缴纳 699 元年费，iOS
+                        用户请使用网页版。</div>
                 </div>
             </div>
             <p class="ios-note" style="margin-top:16px;">
@@ -103,20 +105,21 @@
                     <p class="eyebrow">第一步</p>
                     <h2 class="heading-md">登录教务账号。</h2>
                     <p class="body-text mt-16">
-                        使用<strong>教务处网站</strong>的账号密码登录。部分年级账号可能没有 <code
-                            style="background:#f5f5f7; border-radius:4px; padding:1px 6px;">njust</code>
-                        后缀，部分年级账号可能是<strong>学号</strong>。如遇登录失败请尝试调整账号格式。
+                        <strong>本科生与研究生</strong>统一使用<strong>智慧理工</strong>
+                        （<a href="https://ids.njust.edu.cn" target="_blank" rel="noopener"
+                            style="color:#06c;">ids.njust.edu.cn</a>
+                        统一身份认证）的账号密码登录。
                     </p>
                     <p class="body-text" style="margin-top:6px;">
-                        <strong>本科生</strong>请使用
-                        <a href="http://202.119.81.112:8080/" target="_blank" rel="noopener" style="color:#06c;">教务系统（202.119.81.112:8080）</a>
-                        的账号密码登录，<strong>不是</strong>
-                        <a href="https://ids.njust.edu.cn" target="_blank" rel="noopener" style="color:#c00;">ids.njust.edu.cn</a>
-                        （智慧理工 / 统一身份认证）的密码。
+                        自 v1.1.4-flash-preview 起已<strong>不再</strong>使用旧的
+                        <a href="http://202.119.81.112:8080/" target="_blank" rel="noopener"
+                            style="color:#c00;">教务系统（202.119.81.112:8080）</a>
+                        密码。如遇登录失败，请先确认能在智慧理工网页端正常登录，或尝试调整账号格式（学号 / 是否带
+                        <code style="background:#f5f5f7; border-radius:4px; padding:1px 6px;">njust</code> 后缀）。
                     </p>
                     <p class="body-text" style="margin-top:6px;">
-                        建议前往<a href="https://jwc.njust.edu.cn" target="_blank" rel="noopener"
-                            style="color:#06c;">教务处网站</a>修改初始密码，保障账号安全。
+                        建议前往<a href="https://ids.njust.edu.cn" target="_blank" rel="noopener"
+                            style="color:#06c;">智慧理工</a>修改初始密码，保障账号安全。
                     </p>
                 </div>
                 <div class="phone-ph">
@@ -145,8 +148,9 @@
                         新学期课表陆续公布中，如未同步到新课表请耐心等待教务处排课。
                     </p>
                     <a href="https://course-cdn.njust.store/NJUSTSchedule/imgs/Calendar.jpg"
-                       style="display:block;width:100%;max-width:360px;margin-top:16px;aspect-ratio:16/9;background:#e8e8ed;border-radius:14px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,.08);">
-                        <img src="https://course-cdn.njust.store/NJUSTSchedule/imgs/Calendar.jpg" alt="校历截图（点击查看大图）" loading="lazy"
+                        style="display:block;width:100%;max-width:360px;margin-top:16px;aspect-ratio:16/9;background:#e8e8ed;border-radius:14px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,.08);">
+                        <img src="https://course-cdn.njust.store/NJUSTSchedule/imgs/Calendar.jpg" alt="校历截图（点击查看大图）"
+                            loading="lazy"
                             style="width:100%;height:100%;object-fit:cover;border-radius:14px;transition:opacity 0.4s;opacity:0;"
                             onload="this.style.opacity='1'" onerror="this.parentElement.style.display='none'">
                     </a>
@@ -243,24 +247,41 @@
             &ensp;|&ensp;
             <a href="privacy.html" target="_blank" rel="noopener">隐私政策</a>
             &ensp;|&ensp;
-            <span class="commit-hash">build: 93df3e3</span>
+            <span class="commit-hash">build: 36de02c</span>
         </p>
     </footer>
     <!-- ═══════════ 下载确认弹窗 ═══════════ -->
     <div class="dl-modal" id="dl-modal">
         <div class="dl-modal-card">
             <h3 class="dl-modal-title">下载前，请留意</h3>
+            <div class="dl-modal-notice">
+                <strong>⚠ 升级提示</strong> 自 <strong>1.1.4</strong>
+                起，应用已更换签名。安装前请<strong>先卸载旧版本</strong>，否则将安装失败。这会导致您自定义数据丢失，需要重新设置。
+            </div>
             <ol class="dl-modal-steps">
                 <li>使用<strong>浏览器</strong>打开下载链接，<strong>不要在 QQ 和微信内打开</strong></li>
                 <li>下载后<strong>忽略风险提示</strong>，继续安装</li>
-                <li>安装后登录账号。<strong>本科生</strong>请使用<strong>教务系统</strong>（<a href="http://202.119.81.112:8080/" target="_blank" rel="noopener">http://202.119.81.112:8080/</a>）的账号密码，<strong>不是</strong>智慧理工（<a href="https://ids.njust.edu.cn" target="_blank" rel="noopener">ids.njust.edu.cn</a>）的密码。默认密码为 <code>学号@Njust</code> 或 <code>学号</code>。如果忘记密码，请联系辅导员或教务处修改密码</li>
-                <li>请在<strong>应用 → 设置</strong>中将<strong>开学日期</strong>设置为本学期第一天，否则会有不可预料的后果。秋季学期（寒假前）为 <strong>2026-2027-1</strong>，开学日期 <strong>8 月 24 日</strong>；春季学期（寒假后）为 <strong>2026-2027-2</strong>，开学日期 <strong>2027 年 2 月 22 日</strong>。设置前可对照<a id="modal-calendar" href="https://course-cdn.njust.store/NJUSTSchedule/imgs/Calendar.jpg" style="color:#06c;cursor:pointer;"><strong>校历</strong><img class="lightbox-trigger" src="https://course-cdn.njust.store/NJUSTSchedule/imgs/Calendar.jpg" alt="" aria-hidden="true"></a>核对</li>
+                <li>安装后登录账号。<strong>本科生与研究生</strong>统一使用<strong>智慧理工</strong>（<a href="https://ids.njust.edu.cn"
+                        target="_blank"
+                        rel="noopener">ids.njust.edu.cn</a>，统一身份认证）的账号密码登录，<strong>不再</strong>使用旧的教务系统（http://202.119.81.112:8080/）密码。如果忘记密码，请联系辅导员或教务处重置
+                </li>
+                <li>请在<strong>应用 → 设置</strong>中将<strong>开学日期</strong>设置为本学期第一天，否则会有不可预料的后果。秋季学期（寒假前）为
+                    <strong>2026-2027-1</strong>，开学日期 <strong>8 月 24 日</strong>；春季学期（寒假后）为
+                    <strong>2026-2027-2</strong>，开学日期 <strong>2027 年 2 月 22 日</strong>。设置前可对照<a id="modal-calendar"
+                        href="https://course-cdn.njust.store/NJUSTSchedule/imgs/Calendar.jpg"
+                        style="color:#06c;cursor:pointer;"><strong>校历</strong><img class="lightbox-trigger"
+                            src="https://course-cdn.njust.store/NJUSTSchedule/imgs/Calendar.jpg" alt=""
+                            aria-hidden="true"></a>核对
+                </li>
                 <li>应用内「<strong>个人 → 右上角 <span class="exclaim-btn">!</span> 图标</strong>」可以检查更新</li>
             </ol>
-            <p class="dl-modal-disclaimer">点击下载按钮即表示你理解并接受我们的<a href="privacy.html" target="_blank" style="color:#06c;">隐私政策</a></p>
+            <p class="dl-modal-disclaimer">点击下载按钮即表示你理解并接受我们的<a href="privacy.html" target="_blank"
+                    style="color:#06c;">隐私政策</a></p>
             <div class="dl-modal-actions">
                 <button class="btn btn--text" id="dl-cancel">取消</button>
-                <a id="dl-confirm" class="btn btn--fill" href="https://course-cdn.njust.store/NJUSTSchedule/releases/download/v1.1.3/app-release.apk?from=landing" target="_blank" rel="noopener">确认下载</a>
+                <a id="dl-confirm" class="btn btn--fill"
+                    href="https://course-cdn.njust.store/NJUSTSchedule/releases/download/v1.1.4/app-release.apk?from=landing"
+                    target="_blank" rel="noopener">确认下载</a>
             </div>
         </div>
     </div>

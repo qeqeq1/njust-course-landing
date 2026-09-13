@@ -798,6 +798,19 @@
         .dl-modal.open .dl-modal-card {
             transform: translateY(0);
         }
+        .dl-modal-notice {
+            background: #fff7ed;
+            border: 1px solid #fed7aa;
+            color: #9a3412;
+            border-radius: 10px;
+            padding: 12px 14px;
+            font-size: 14px;
+            line-height: 1.5;
+            margin-bottom: 18px;
+        }
+        .dl-modal-notice strong {
+            color: #7c2d12;
+        }
         .dl-modal-title {
             font-size: 21px;
             font-weight: 600;

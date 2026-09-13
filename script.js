@@ -4,7 +4,7 @@
     var span    = document.getElementById('apk-version');
     var confirm = document.getElementById('dl-confirm');
     var fallUrl = btn.getAttribute('data-href');
-    var fallVer = 'v1.1.3';
+    var fallVer = 'v1.1.4';
 
     function apply(url, ver) {
         var u = url + (url.indexOf('?') === -1 ? '?from=landing' : '&from=landing');
