@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>联系我们 · 梨课程</title>
+    <meta name="description" content="梨课程联系方式：QQ 反馈群、官网与应用内反馈入口。">
+    <link rel="stylesheet" href="../privacy.css">
+    <style>
+        .group-list {
+            display: grid;
+            gap: 12px;
+            margin: 16px 0;
+        }
+
+        .group {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            padding: 18px 20px;
+            border: 1.5px solid var(--line);
+            border-radius: 18px;
+            background: #fafafb;
+        }
+
+        .group--recommend {
+            border-color: #cfe8d6;
+            background: #f6fbf7;
+        }
+
+        .group--full {
+            background: #fafafb;
+        }
+
+        .group-main {
+            min-width: 0;
+        }
+
+        .group-head {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .group-head h3 {
+            margin: 0;
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--text);
+        }
+
+        .badge {
+            padding: 2px 9px;
+            border-radius: 999px;
+            font-size: 11.5px;
+            font-weight: 700;
+            letter-spacing: .02em;
+            white-space: nowrap;
+        }
+
+        .badge--open {
+            background: #1a7f37;
+            color: #fff;
+        }
+
+        .badge--full {
+            background: #e5e5ea;
+            color: #6e6e73;
+        }
+
+        .group-number {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin: 6px 0 0;
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--text);
+            font-variant-numeric: tabular-nums;
+            letter-spacing: .02em;
+        }
+
+        .copy-btn {
+            appearance: none;
+            border: 1px solid var(--line);
+            background: #fff;
+            color: var(--text-s);
+            border-radius: 999px;
+            padding: 2px 10px;
+            font-size: 12px;
+            font-family: inherit;
+            cursor: pointer;
+            transition: border-color .16s ease, color .16s ease;
+        }
+
+        .copy-btn:hover {
+            border-color: var(--accent);
+            color: var(--text);
+        }
+
+        .copy-btn:focus-visible {
+            outline: 3px solid rgba(226, 176, 7, .45);
+            outline-offset: 2px;
+        }
+
+        .group-note {
+            margin: 8px 0 0;
+            font-size: 12.5px;
+            color: var(--text-xs);
+            line-height: 1.6;
+        }
+
+        .group-btn {
+            flex: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 104px;
+            padding: 10px 18px;
+            border-radius: 999px;
+            background: var(--accent);
+            color: #1d1d1f;
+            font-size: 14px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: filter .16s ease;
+        }
+
+        .group-btn:hover {
+            filter: brightness(.95);
+        }
+
+        .group-btn:focus-visible {
+            outline: 3px solid rgba(226, 176, 7, .45);
+            outline-offset: 2px;
+        }
+
+        .group-btn--ghost {
+            background: #fff;
+            border: 1px solid var(--line);
+            color: var(--text-s);
+            font-weight: 600;
+        }
+
+        @media (max-width: 734px) {
+            .group {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .group-btn {
+                width: 100%;
+            }
+        }
+
+        @media (prefers-color-scheme: dark) {
+            .group {
+                background: #232329;
+            }
+
+            .group--recommend {
+                background: #14251a;
+                border-color: #2c4a36;
+            }
+
+            .copy-btn {
+                background: #232329;
+            }
+
+            .group-btn--ghost {
+                background: #232329;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <a href="../index.html" class="back-link">← 返回首页</a>
+
+        <header class="page-head">
+            <h1>联系我们</h1>
+            <p class="lead">
+                遇到问题、想提建议，或需要查询数据处理相关事项，欢迎通过 QQ 反馈群联系我们。
+            </p>
+        </header>
+
+        <section class="card">
+            <h2>QQ 反馈群</h2>
+
+            <div class="group-list">
+                <article class="group group--full">
+                    <div class="group-main">
+                        <div class="group-head">
+                            <h3>梨课程反馈群 · 1 群</h3>
+                            <span class="badge badge--full">已满员</span>
+                        </div>
+                        <p class="group-number">
+                            <span class="group-number-text">762101575</span>
+                            <button class="copy-btn" type="button" data-copy="762101575">复制</button>
+                        </p>
+                    </div>
+                    <a class="group-btn group-btn--ghost" href="https://qm.qq.com/q/8VcYTsgkW4" target="_blank"
+                        rel="noopener">加入群聊</a>
+                </article>
+
+                <article class="group group--full">
+                    <div class="group-main">
+                        <div class="group-head">
+                            <h3>梨课程反馈群 · 2 群</h3>
+                            <span class="badge badge--full">已满员</span>
+                        </div>
+                        <p class="group-number">
+                            <span class="group-number-text">1091377907</span>
+                            <button class="copy-btn" type="button" data-copy="1091377907">复制</button>
+                        </p>
+                    </div>
+                    <a class="group-btn group-btn--ghost" href="https://qm.qq.com/q/ybtAg9eh5C" target="_blank"
+                        rel="noopener">加入群聊</a>
+                </article>
+
+                <article class="group group--recommend">
+                    <div class="group-main">
+                        <div class="group-head">
+                            <h3>梨课程反馈群 · 3 群</h3>
+                            <span class="badge badge--open">可加入</span>
+                        </div>
+                        <p class="group-number">
+                            <span class="group-number-text">1095467610</span>
+                            <button class="copy-btn" type="button" data-copy="1095467610">复制</button>
+                        </p>
+                    </div>
+                    <a class="group-btn" href="https://qm.qq.com/q/6Sw24kptII" target="_blank" rel="noopener">加入群聊</a>
+                </article>
+
+                <article class="group group--recommend">
+                    <div class="group-main">
+                        <div class="group-head">
+                            <h3>梨课程反馈群 · 4 群</h3>
+                            <span class="badge badge--open">可加入</span>
+                        </div>
+                        <p class="group-number">
+                            <span class="group-number-text">1062913682</span>
+                            <button class="copy-btn" type="button" data-copy="1062913682">复制</button>
+                        </p>
+                    </div>
+                    <a class="group-btn" href="https://qm.qq.com/q/lT3mOpa3ny" target="_blank" rel="noopener">加入群聊</a>
+                </article>
+            </div>
+
+        </section>
+
+        <section class="card">
+            <h2>其他渠道</h2>
+            <ul>
+                <li><strong>官方网站</strong>：<a class="inline" href="https://m.njust.store" target="_blank"
+                        rel="noopener">m.njust.store</a></li>
+                <li><strong>隐私政策</strong>：<a class="inline" href="../privacy.html">按应用版本查看</a></li>
+                <li><strong>应用内入口</strong>：设置 → 数据收集与隐私政策 → 隐私政策</li>
+                <li><strong>版本与更新</strong>：应用内「个人 → 右上角 ! 图标」可检查更新</li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h2>回复时间</h2>
+            <p>
+                我们会在收到反馈后 <strong>7 个工作日内</strong>回复。
+            </p>
+        </section>
+
+        <p class="footer-note">
+            Copyright &copy; 2026 梨课程 · 为 NJUST 学子而生。保留所有权利。<br>
+            <a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener">津ICP备2023000212号-3</a>
+            &ensp;|&ensp;
+            <a href="../privacy.html">隐私政策</a>
+            &ensp;|&ensp;
+            <a href="../index.html">返回首页</a>
+        </p>
+    </div>
+
+    <script>
+        (function () {
+            'use strict';
+
+            Array.prototype.forEach.call(document.querySelectorAll('.copy-btn'), function (button) {
+                button.addEventListener('click', function () {
+                    var text = button.getAttribute('data-copy') || '';
+                    if (!text) return;
+
+                    function reset() {
+                        window.setTimeout(function () {
+                            button.textContent = '复制';
+                        }, 1800);
+                    }
+
+                    function done() {
+                        button.textContent = '已复制';
+                        reset();
+                    }
+
+                    // 非安全上下文（如直接打开本地文件）无法写入剪贴板：
+                    // 自动选中群号，用户按 Ctrl+C 即可。
+                    function fallback() {
+                        var span = button.parentElement.querySelector('.group-number-text');
+                        if (span) {
+                            var range = document.createRange();
+                            range.selectNodeContents(span);
+                            var selection = window.getSelection();
+                            selection.removeAllRanges();
+                            selection.addRange(range);
+                        }
+                        button.textContent = '已选中，请复制';
+                        reset();
+                    }
+
+                    if (navigator.clipboard && navigator.clipboard.writeText) {
+                        navigator.clipboard.writeText(text).then(done).catch(fallback);
+                        return;
+                    }
+
+                    fallback();
+                });
+            });
+        })();
+    </script>
+</body>
+
+</html>

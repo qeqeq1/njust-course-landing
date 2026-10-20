@@ -1,0 +1,926 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>隐私政策（网页版）· 梨课程</title>
+    <meta name="description" content="梨课程网页版（1.1.9 及以后）隐私政策：代理访问、Cookie 与本地存储、第三方统计、跨境传输与你的权利。">
+    <link rel="stylesheet" href="privacy.css">
+</head>
+
+<body>
+    <div class="container">
+        <a href="privacy.html" class="back-link">← 返回政策入口</a>
+
+        <header class="page-head">
+            <h1>隐私政策</h1>
+            <div class="meta-line">
+                <span>适用产品：<strong>网页版</strong></span>
+                <span>适用版本：<strong>1.1.9 及以后</strong></span>
+                <span>政策版本：<strong>v2.0</strong></span>
+                <span>生效日期：<strong>2026 年 10 月 20 日</strong></span>
+            </div>
+            <p class="lead">
+                本政策仅适用于梨课程网页版 1.1.9 及以后版本，说明我们如何处理你的信息、使用哪些第三方服务，
+                以及你对自己信息享有的权利。
+            </p>
+        </header>
+
+        <!-- ── 概要 ── -->
+        <section class="card" id="overview">
+            <h2>概要</h2>
+            <p class="overview-desc">
+                受浏览器跨域限制，网页版通过<strong>我们自建的代理服务</strong>代为访问学校系统；
+                页面字体与渲染引擎由 Google 提供，首次加载会产生境外请求。
+            </p>
+            <dl class="facts">
+                <div class="fact">
+                    <dt>数据主要流向</dt>
+                    <dd>浏览器 ↔ 我们的代理（proxy-service.njust.store）↔ 学校系统；浏览器 ↔ CDN</dd>
+                </div>
+                <div class="fact">
+                    <dt>第三方统计</dt>
+                    <dd>百度统计（页面浏览）+ Microsoft Clarity（使用情况记录），<strong>均默认关闭</strong></dd>
+                </div>
+                <div class="fact">
+                    <dt>本地存储</dt>
+                    <dd>浏览器 localStorage / IndexedDB：登录状态、课表缓存、设置</dd>
+                </div>
+                <div class="fact">
+                    <dt>跨境传输</dt>
+                    <dd>Google 字体与渲染引擎（网页运行必需）；开启统计后另有 Clarity</dd>
+                </div>
+                <div class="fact">
+                    <dt>浏览器权限</dt>
+                    <dd>仅使用本地存储；不申请定位、摄像头、麦克风或通知权限</dd>
+                </div>
+                <div class="fact">
+                    <dt>账号体系</dt>
+                    <dd>无注册、无开发者侧账号；使用学校统一身份认证账号</dd>
+                </div>
+            </dl>
+        </section>
+
+        <!-- ── 目录 ── -->
+        <nav class="card" aria-labelledby="toc-title">
+            <h2 id="toc-title" style="margin-bottom:8px;">目录</h2>
+            <div class="toc">
+                <a href="#scope"><span class="toc-num">01</span>适用范围与生效日期</a>
+                <a href="#data-types"><span class="toc-num">02</span>我们处理哪些信息</a>
+                <a href="#sources"><span class="toc-num">03</span>信息的来源与具体场景</a>
+                <a href="#cookies"><span class="toc-num">04</span>Cookie 及类似技术</a>
+                <a href="#purposes"><span class="toc-num">05</span>使用目的与处理依据</a>
+                <a href="#third-party"><span class="toc-num">06</span>第三方统计与 SDK</a>
+                <a href="#sharing"><span class="toc-num">07</span>共享、转让与公开披露</a>
+                <a href="#retention"><span class="toc-num">08</span>存储地点与保留期限</a>
+                <a href="#cross-border"><span class="toc-num">09</span>跨境传输</a>
+                <a href="#rights"><span class="toc-num">10</span>你的权利</a>
+                <a href="#security"><span class="toc-num">11</span>数据安全</a>
+                <a href="#minors"><span class="toc-num">12</span>未成年人保护</a>
+                <a href="#updates"><span class="toc-num">13</span>政策更新与通知</a>
+                <a href="#contact"><span class="toc-num">14</span>联系我们</a>
+                <a href="#definitions"><span class="toc-num">15</span>术语说明</a>
+            </div>
+        </nav>
+
+        <!-- ── 01 ── -->
+        <section class="card" id="scope">
+            <h2><span class="num">01</span>适用范围与生效日期</h2>
+
+            <h3>适用主体</h3>
+            <p>
+                本政策由<strong>梨课程开发者</strong>（个人开发者，以下简称「我们」）制定并发布。我们不是南京理工大学及其任何院系、
+                部门的官方机构，本应用与学校之间不存在隶属、委托或合作关系。
+            </p>
+
+            <h3>适用产品与版本</h3>
+            <p>
+                本政策适用于<strong>梨课程网页版 1.1.9 及以后版本</strong>，访问地址为
+                <a class="inline" href="https://course.njust.store" target="_blank" rel="noopener">course.njust.store</a>。
+                本政策同时适用于本政策页面的访问。
+            </p>
+
+            <h3>不适用范围</h3>
+            <p>
+                学校运营的教务系统、统一身份认证（智慧理工）、研究生系统、邮箱、校园网等，由南京理工大学自行运营并适用其隐私规则。
+                你在这些系统中完成的登录与操作，不适用本政策；我们无法控制学校系统如何处理你的信息。
+            </p>
+
+            <h3>生效与版本</h3>
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>项目</th>
+                            <th>内容</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>政策版本</td>
+                            <td>v2.0（应用内版本号 2）</td>
+                        </tr>
+                        <tr>
+                            <td>生效日期</td>
+                            <td>2026 年 10 月 20 日</td>
+                        </tr>
+                        <tr>
+                            <td>适用版本</td>
+                            <td>网页版 1.1.9 及以后</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <p class="muted">
+                我们会在政策版本更新后，于下次进入网页版时重新征求你的同意；在你重新同意前，应用不可继续使用。
+            </p>
+        </section>
+
+        <!-- ── 02 ── -->
+        <section class="card" id="data-types">
+            <h2><span class="num">02</span>我们处理哪些信息</h2>
+            <p>
+                我们遵循<strong>最小必要</strong>原则：只处理实现你主动使用的功能所必需的信息。
+            </p>
+
+            <div class="table-wrap">
+                <table>
+                    <caption>信息处理总览</caption>
+                    <thead>
+                        <tr>
+                            <th style="width:28%;">信息类别</th>
+                            <th style="width:16%;">是否处理</th>
+                            <th style="width:26%;">存放位置</th>
+                            <th>是否离开浏览器</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>学号、密码、账号类型</strong>（本科 / 研究生）</td>
+                            <td class="yes">是</td>
+                            <td>浏览器本地存储</td>
+                            <td>经我们的代理发送至学校系统</td>
+                        </tr>
+                        <tr>
+                            <td><strong>教务数据</strong>：姓名、学号、学院专业、课表、成绩、考试安排、教师课表</td>
+                            <td class="yes">是</td>
+                            <td>浏览器本地缓存</td>
+                            <td class="no">否（由学校系统返回后存于本地）</td>
+                        </tr>
+                        <tr>
+                            <td><strong>你创建的内容</strong>：课程备注、自定义课程、显示设置</td>
+                            <td class="yes">是</td>
+                            <td>浏览器本地存储</td>
+                            <td class="no">否</td>
+                        </tr>
+                        <tr>
+                            <td><strong>诊断日志</strong>（操作与网络记录）</td>
+                            <td>可选，默认关闭</td>
+                            <td>浏览器本地存储</td>
+                            <td>仅在你主动导出并分享时离开设备</td>
+                        </tr>
+                        <tr>
+                            <td><strong>会话凭据</strong>（与学校系统通信）</td>
+                            <td class="yes">是</td>
+                            <td>浏览器保存一个随机会话标识；学校会话由代理服务端持有</td>
+                            <td>是（发送至学校系统）</td>
+                        </tr>
+                        <tr>
+                            <td><strong>使用统计</strong>：页面浏览、点击等交互、设备与网络信息</td>
+                            <td>可选，默认关闭</td>
+                            <td>第三方统计服务</td>
+                            <td>是（仅在你同意后）</td>
+                        </tr>
+                        <tr>
+                            <td><strong>设备标识符</strong>（IMEI、IDFA、OAID 等）</td>
+                            <td class="no">否</td>
+                            <td>—</td>
+                            <td class="no">否</td>
+                        </tr>
+                        <tr>
+                            <td><strong>通讯录、短信、通话记录、精确位置、摄像头、麦克风</strong></td>
+                            <td class="no">否</td>
+                            <td>—</td>
+                            <td class="no">否</td>
+                        </tr>
+                        <tr>
+                            <td><strong>广告标识与广告行为</strong></td>
+                            <td class="no">否</td>
+                            <td>—</td>
+                            <td class="no">否</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="note note--warn">
+                <p class="note-title">关于密码的重要说明</p>
+                <p>
+                    为支持刷新页面后免重复登录，网页版会把你的密码保存在浏览器本地存储中。密码以<strong>混淆形式</strong>写入，
+                    目的是避免明文直接出现在存储中，但<strong>混淆不等于加密</strong>：能访问该浏览器存储的人仍可能还原出密码。
+                    请勿在公用电脑上保存密码；使用后可通过浏览器的「清除站点数据」删除。
+                </p>
+            </div>
+
+            <h3>我们不收集的信息</h3>
+            <ul>
+                <li>我们不建立开发者侧的用户账号体系，不收集你的手机号、邮箱、身份证号、住址；</li>
+                <li>我们不采集设备标识符，不读取通讯录、短信、通话记录、精确位置、摄像头或麦克风；</li>
+                <li>我们不接入广告平台，不出售、不租借你的个人信息，不将信息用于广告定向；</li>
+                <li>我们不接入第三方崩溃收集服务。</li>
+            </ul>
+        </section>
+
+        <!-- ── 03 ── -->
+        <section class="card" id="sources">
+            <h2><span class="num">03</span>信息的来源与具体场景</h2>
+
+            <h3>3.1 你主动提供的信息</h3>
+            <ul>
+                <li><strong>登录凭据</strong>：你在登录页输入的学号与密码，以及选择的账号类型（本科生 / 研究生）。登录成功后保存在浏览器本地存储中。</li>
+                <li><strong>自定义内容</strong>：你添加的课程备注、自定义课程。这些内容仅保存在你的浏览器中，不会上传。</li>
+                <li><strong>反馈信息</strong>：当你加入 QQ 反馈群或在群内反馈问题时，你主动发送的文字、截图与联系方式由你自行提供，我们仅用于定位与回复问题。</li>
+            </ul>
+
+            <h3>3.2 从学校系统获取的信息</h3>
+            <p>在你登录后，网页版会以你的身份向学校系统请求并展示以下信息，并将其缓存到本地以便再次打开时快速展示：</p>
+            <ul>
+                <li>姓名、学号、学院与专业等基本信息；</li>
+                <li>本学期课表、课程名称、上课时间、地点、任课教师；</li>
+                <li>考试成绩、学分与绩点、考试安排；</li>
+                <li>你主动使用的其他校园服务查询结果（如教师课表、空闲教室、校园卡相关查询等）。</li>
+            </ul>
+            <p class="muted">
+                这些信息由学校系统生成与维护，我们只是展示工具，不对其准确性、完整性与及时性作出保证。
+            </p>
+
+            <h3>3.3 代理服务</h3>
+            <p>
+                受浏览器同源策略限制，网页版无法直接读取学校系统返回的内容，因此请求会先发送到我们自建的代理服务
+                <code>proxy-service.njust.store</code>，再由代理转发至学校系统。代理只做请求转发与协议适配，
+                <strong>不建立用户档案，不保存你的账号、密码与课表 / 成绩内容</strong>。
+            </p>
+            <p>
+                为让你刷新页面后不必重复登录，代理会以浏览器中的一个随机会话标识为索引，
+                在代理服务端持有学校系统返回的<strong>会话 Cookie</strong>。该会话仅在维持登录所需的期间保留，
+                你退出登录、会话过期或长时间无操作后即被清除；它不包含你的账号与密码。
+                为保障服务安全与稳定，代理可能产生不含业务内容的访问日志（如时间、状态码），并按最短必要期限保留。
+            </p>
+
+            <h3>3.4 设备与日志信息</h3>
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th style="width:30%;">类型</th>
+                            <th>说明</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>应用与系统信息</td>
+                            <td>版本号、浏览器类型与版本、操作系统类型、界面语言。用于版本检查、兼容性判断与问题定位，不上传。</td>
+                        </tr>
+                        <tr>
+                            <td>网络请求记录</td>
+                            <td>访问学校系统与 CDN 时产生的请求地址、时间与结果。正常使用时不保存；仅在排障日志开启后记录在本地。</td>
+                        </tr>
+                        <tr>
+                            <td>诊断日志</td>
+                            <td>默认关闭。开启后记录操作、HTTP 请求与响应、解析结果与错误，<strong>内容不做脱敏</strong>，可能包含账号、Cookie、课程与教师信息。仅存本机，最多保留 3 天、约 20 MB，超出自动删除。</td>
+                        </tr>
+                        <tr>
+                            <td>统计信息</td>
+                            <td>仅在你同意后由第三方统计服务采集，详见第 06 节。</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>3.5 浏览器权限</h3>
+            <p>
+                网页版仅使用浏览器的本地存储与 Cookie，不申请定位、摄像头、麦克风或系统通知权限；
+                首次加载时，浏览器会向 Google 请求字体与渲染引擎资源，详见第 09 节。
+            </p>
+        </section>
+
+        <!-- ── 04 ── -->
+        <section class="card" id="cookies">
+            <h2><span class="num">04</span>Cookie 及类似技术</h2>
+            <p>
+                网页版使用浏览器本地存储与 Cookie 维持登录、缓存数据与保存设置，
+                不用于跨站追踪或广告投放。
+            </p>
+
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th style="width:30%;">技术</th>
+                            <th>用途与内容</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>localStorage / IndexedDB</td>
+                            <td>保存登录状态、课表 / 成绩缓存、设置与诊断日志。数据由浏览器按站点隔离，其他站点无法读取。</td>
+                        </tr>
+                        <tr>
+                            <td>代理会话 Cookie</td>
+                            <td>浏览器中保存一个随机生成的会话标识，用于关联代理服务端的登录会话；学校系统的会话 Cookie 由代理持有，不下发到浏览器。</td>
+                        </tr>
+                        <tr>
+                            <td>统计 Cookie</td>
+                            <td>仅在你同意数据收集后，由百度统计与 Microsoft Clarity 设置，用于区分独立访客与统计访问情况。</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>如何管理</h3>
+            <ul>
+                <li>在「设置 → 数据收集与隐私政策」关闭数据收集；</li>
+                <li>使用浏览器的「清除站点数据」可删除全部本地数据与 Cookie；</li>
+                <li>使用无痕模式时，数据在关闭窗口后失效；</li>
+                <li>退出登录可删除保存的学号、密码、账号类型与会话标识。</li>
+            </ul>
+        </section>
+
+        <!-- ── 05 ── -->
+        <section class="card" id="purposes">
+            <h2><span class="num">05</span>使用目的与处理依据</h2>
+            <p>
+                我们依据《中华人民共和国个人信息保护法》等适用法律处理你的个人信息，处理依据包括：取得你的同意、
+                为履行你请求的服务所必需、履行法定义务，以及为应对突发公共卫生事件或紧急情况下保护自然人生命健康与财产安全所必需等法定情形。
+            </p>
+
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th style="width:26%;">使用目的</th>
+                            <th style="width:34%;">涉及信息</th>
+                            <th>处理依据</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>登录学校系统、维持会话</td>
+                            <td>学号、密码、账号类型、会话凭据</td>
+                            <td>履行你请求的服务所必需</td>
+                        </tr>
+                        <tr>
+                            <td>同步并展示课表、成绩、考试等信息</td>
+                            <td>教务数据、会话凭据</td>
+                            <td>履行你请求的服务所必需</td>
+                        </tr>
+                        <tr>
+                            <td>本地缓存，减少重复请求</td>
+                            <td>课表、成绩、考试、校历、图片</td>
+                            <td>履行你请求的服务所必需</td>
+                        </tr>
+                        <tr>
+                            <td>考试安排与成绩提醒</td>
+                            <td>考试、成绩、提醒设置</td>
+                            <td>你主动开启的功能（同意）</td>
+                        </tr>
+                        <tr>
+                            <td>版本检查与更新、公告展示</td>
+                            <td>版本号、平台类型</td>
+                            <td>履行服务所必需，保障功能与安全</td>
+                        </tr>
+                        <tr>
+                            <td>改进产品与使用体验</td>
+                            <td>页面浏览、点击等交互、设备与网络信息</td>
+                            <td>你的单独同意（默认关闭，可随时撤回）</td>
+                        </tr>
+                        <tr>
+                            <td>故障排查与技术支持</td>
+                            <td>诊断日志（你主动开启并导出）</td>
+                            <td>你的同意</td>
+                        </tr>
+                        <tr>
+                            <td>回复反馈、处理争议</td>
+                            <td>你主动提供的信息</td>
+                            <td>你的同意 / 履行服务所必需</td>
+                        </tr>
+                        <tr>
+                            <td>安全防护与依法配合</td>
+                            <td>必要的访问记录</td>
+                            <td>履行法定义务、保障服务安全</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <p>
+                我们不会将你的个人信息用于本政策未载明的其他目的。如需超出本政策范围使用，我们会再次告知并取得你的同意。
+            </p>
+        </section>
+
+        <!-- ── 06 ── -->
+        <section class="card" id="third-party">
+            <h2><span class="num">06</span>第三方统计与 SDK</h2>
+
+            <div class="note note--warn">
+                <p class="note-title">默认关闭，需你主动同意</p>
+                <p>
+                    使用统计为<strong>选择性加入</strong>。首次进入时，「参加用户体验改进计划」复选框<strong>默认不勾选</strong>；
+                    不勾选不影响任何功能。你可以在「设置 → 数据收集与隐私政策」随时更改。
+                </p>
+            </div>
+
+            <h3>百度统计</h3>
+            <ul>
+                <li><strong>用途</strong>：了解访问规模与入口效果，用于改进产品。</li>
+                <li><strong>可能记录</strong>：页面浏览量（PV）、独立访客、来源页面、浏览器与设备类型、IP 地址及粗略地理位置。</li>
+                <li><strong>Cookie</strong>：百度统计会设置用于区分独立访客的统计 Cookie。</li>
+                <li><strong>隐私政策</strong>：<a class="inline"
+                        href="https://tongji.baidu.com/web/help/article?id=330&amp;type=0" target="_blank"
+                        rel="noopener">《百度统计隐私政策》</a>（2026 年 6 月 15 日更新）。</li>
+            </ul>
+
+            <h3>Microsoft Clarity</h3>
+            <ul>
+                <li><strong>用途</strong>：使用情况记录与交互分析，帮助我们定位界面问题、改进操作流程。</li>
+                <li><strong>可能记录</strong>：你与页面的交互（点击、滚动、页面切换）、浏览器与操作系统版本、屏幕尺寸、语言、IP 地址及由此推断的粗略地理位置、应用版本。</li>
+                <li><strong>使用范围</strong>：上述记录仅用于改进产品与使用体验，不用于广告投放、用户画像或跨应用追踪。</li>
+                <li><strong>关闭方式</strong>：设置 → 数据收集与隐私政策 → 关闭「允许数据收集」，关闭后停止采集。撤回同意不影响撤回前已进行的处理。</li>
+                <li><strong>隐私声明</strong>：<a class="inline" href="https://clarity.microsoft.com/privacy" target="_blank" rel="noopener">Clarity 数据隐私说明</a>、
+                    <a class="inline" href="https://privacy.microsoft.com/privacystatement" target="_blank" rel="noopener">Microsoft 隐私声明</a>。</li>
+            </ul>
+
+            <h3>我们未使用的第三方服务</h3>
+            <ul>
+                <li>无广告 SDK、无推送 SDK、无支付 SDK、无社交登录 SDK；</li>
+                <li>无第三方崩溃收集；</li>
+                <li>无用户画像、无跨应用追踪、无数据交易。</li>
+            </ul>
+        </section>
+
+        <!-- ── 07 ── -->
+        <section class="card" id="sharing">
+            <h2><span class="num">07</span>共享、转让与公开披露</h2>
+
+            <h3>7.1 我们不出售你的信息</h3>
+            <p>
+                我们<strong>不出售、不出租、不交换</strong>你的个人信息，也不会将其用于广告投放或与广告相关的用户画像。
+            </p>
+
+            <h3>7.2 可能涉及第三方的场景</h3>
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th style="width:24%;">接收方</th>
+                            <th style="width:32%;">涉及信息</th>
+                            <th>目的与性质</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>南京理工大学相关系统</strong></td>
+                            <td>学号、密码、会话凭据</td>
+                            <td>完成登录与数据查询。由你主动发起，学校按其规则处理</td>
+                        </tr>
+                        <tr>
+                            <td><strong>网页版代理服务</strong><br><span class="muted">我们自行运营</span></td>
+                            <td>请求内容（含登录凭据）、会话 Cookie</td>
+                            <td>转发请求，解决浏览器跨域限制；保存维持登录所需的会话 Cookie，不保存账号密码与业务内容</td>
+                        </tr>
+                        <tr>
+                            <td><strong>百度统计</strong></td>
+                            <td>页面浏览、来源、设备与网络信息</td>
+                            <td>访问统计；仅在你同意后</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Microsoft Clarity</strong></td>
+                            <td>使用情况记录、设备与网络信息</td>
+                            <td>产品改进；仅在你同意后</td>
+                        </tr>
+                        <tr>
+                            <td><strong>阿里云 ESA</strong><br><span class="muted">CDN 与边缘加速</span></td>
+                            <td>IP、User-Agent、请求路径、时间</td>
+                            <td>分发静态资源与公告；基础设施服务</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Google</strong></td>
+                            <td>IP、User-Agent、字体与渲染引擎请求</td>
+                            <td>加载字体与 Flutter Web 渲染引擎，属于网页运行所必需</td>
+                        </tr>
+                        <tr>
+                            <td><strong>腾讯（QQ）</strong></td>
+                            <td>你主动在群内提供的信息</td>
+                            <td>反馈与沟通；是否加入由你决定</td>
+                        </tr>
+                        <tr>
+                            <td><strong>监管或司法机关</strong></td>
+                            <td>依法应提供的信息</td>
+                            <td>履行法定义务；我们会在法律允许范围内告知你</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>7.3 转让与公开披露</h3>
+            <ul>
+                <li>如发生合并、收购或资产转让，你的信息可能随相关业务一并转移。我们会要求承接方继续受本政策约束，并通过本页面或应用内公告告知你；如处理目的发生变化，将重新取得你的同意。</li>
+                <li>除依法需要披露或取得你的单独同意外，我们不会公开披露你的个人信息。</li>
+            </ul>
+
+            <h3>7.4 委托处理</h3>
+            <p>
+                CDN 与统计服务属于委托处理或独立第三方服务。我们会通过服务条款要求其仅在约定目的与期限内处理信息，
+                并采取必要的安全措施。第三方自身的处理行为同时受其隐私政策约束。
+            </p>
+        </section>
+
+        <!-- ── 08 ── -->
+        <section class="card" id="retention">
+            <h2><span class="num">08</span>存储地点与保留期限</h2>
+
+            <h3>8.1 存储地点</h3>
+            <ul>
+                <li><strong>你的浏览器</strong>：登录凭据、课表 / 成绩缓存、备注、设置与诊断日志，保存在浏览器的本地存储中。</li>
+                <li><strong>我们的服务器</strong>：网页版代理部署于<strong>中国境内</strong>，仅做请求转发。为维持登录，代理会在服务端保存学校系统的会话 Cookie（不含账号与密码）；不建立用户数据库，不存储课表、成绩等业务内容。</li>
+                <li><strong>CDN</strong>：静态资源通过阿里云 ESA 分发，可能由境内外边缘节点响应。</li>
+                <li><strong>第三方统计</strong>：Microsoft Clarity 的数据存储于<strong>境外</strong>；百度统计存储于<strong>中国境内</strong>；Google 字体与渲染引擎请求指向<strong>境外</strong>。</li>
+            </ul>
+
+            <h3>8.2 保留期限</h3>
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th style="width:30%;">数据</th>
+                            <th style="width:34%;">保留期限</th>
+                            <th>说明</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>学号、密码、账号类型</td>
+                            <td>至你退出登录或清除站点数据</td>
+                            <td>退出登录会立即删除上述凭据</td>
+                        </tr>
+                        <tr>
+                            <td>浏览器中的代理会话标识</td>
+                            <td>至退出登录、会话过期或清除站点数据</td>
+                            <td>仅用于关联代理服务端的登录会话</td>
+                        </tr>
+                        <tr>
+                            <td>课表、成绩、考试、校历缓存</td>
+                            <td>至你清理缓存、重新同步或清除站点数据</td>
+                            <td>不含登录凭据，退出登录后仍保留以便复用</td>
+                        </tr>
+                        <tr>
+                            <td>备注、自定义课程、设置</td>
+                            <td>至你主动删除或清除站点数据</td>
+                            <td>属于你创建的内容，不会因退出登录丢失</td>
+                        </tr>
+                        <tr>
+                            <td>图片缓存、临时文件</td>
+                            <td>至你清理或浏览器回收</td>
+                            <td>可在「存储空间」中一键清理</td>
+                        </tr>
+                        <tr>
+                            <td>诊断日志</td>
+                            <td>开启后最多保留 3 天，上限约 20 MB</td>
+                            <td>默认关闭；超出后自动删除最旧内容</td>
+                        </tr>
+                        <tr>
+                            <td>代理转发的请求内容</td>
+                            <td>转发完成后即释放</td>
+                            <td>不保存账号、密码与课表 / 成绩内容</td>
+                        </tr>
+                        <tr>
+                            <td>代理持有的会话 Cookie</td>
+                            <td>至退出登录、会话过期或长时间无操作</td>
+                            <td>用于免重复登录；不含账号与密码</td>
+                        </tr>
+                        <tr>
+                            <td>Clarity 使用情况数据</td>
+                            <td>一般记录 30 天；热图等汇总数据最长 9 个月</td>
+                            <td>按 Clarity 官方政策执行；我们无法单方缩短或删除</td>
+                        </tr>
+                        <tr>
+                            <td>百度统计数据</td>
+                            <td>按百度公布的期限</td>
+                            <td>详见《百度统计隐私政策》</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <p>
+                当处理目的已实现、你撤回同意或服务终止时，我们会停止处理并删除相关数据（可由你主动清除站点数据，或在代理会话过期后自动清除）。
+                法律法规另有规定的，从其规定。
+            </p>
+        </section>
+
+        <!-- ── 09 ── -->
+        <section class="card" id="cross-border">
+            <h2><span class="num">09</span>跨境传输</h2>
+            <p>
+                我们的服务主要面向中国境内用户，核心数据（登录凭据、课表、成绩）保存在你的浏览器与学校系统之间，
+                <strong>不经过我们的境外服务器</strong>。以下场景会涉及向境外提供信息：
+            </p>
+
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th style="width:24%;">场景</th>
+                            <th style="width:30%;">信息类型</th>
+                            <th>说明</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Microsoft Clarity</strong></td>
+                            <td>使用情况记录、设备信息、IP</td>
+                            <td>仅在你开启数据收集后发生；可在设置中关闭</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Google 字体与渲染引擎</strong></td>
+                            <td>IP、User-Agent、资源请求</td>
+                            <td>网页首次加载必需，无法在网页版内关闭</td>
+                        </tr>
+                        <tr>
+                            <td><strong>CDN 边缘节点</strong></td>
+                            <td>IP、User-Agent、请求路径</td>
+                            <td>由阿里云 ESA 就近调度，可能由境外节点响应</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>9.1 法律依据与保护措施</h3>
+            <ul>
+                <li>统计类跨境传输以<strong>你的单独同意</strong>为依据；你拒绝或撤回同意后，我们不再产生该类传输。</li>
+                <li>加载 Google 资源属于<strong>提供网页服务所必需</strong>。</li>
+                <li>我们会通过加密传输（HTTPS）、最小化字段、选择具备合规资质的服务商等方式降低风险，并要求境外接收方按约定目的处理。</li>
+                <li>除上述场景外，我们不会主动向境外提供你的个人信息。</li>
+            </ul>
+
+            <h3>9.2 你的选择</h3>
+            <ul>
+                <li>不开启「允许数据收集」，即可避免 Clarity 相关的跨境传输；</li>
+                <li>如你不接受 Google 字体与渲染引擎请求，请停止使用网页版。</li>
+            </ul>
+        </section>
+
+        <!-- ── 10 ── -->
+        <section class="card" id="rights">
+            <h2><span class="num">10</span>你的权利</h2>
+            <p>
+                在适用法律范围内，你对自己的个人信息享有以下权利。由于我们不建立远程账号档案，大部分权利可直接在网页版内行使。
+            </p>
+
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th style="width:18%;">权利</th>
+                            <th style="width:44%;">如何行使</th>
+                            <th>说明</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>访问</strong></td>
+                            <td>在网页版内查看课表、成绩、考试、备注与设置；在「关于 → 诊断日志」查看日志</td>
+                            <td>数据均在本地，无需向我们申请</td>
+                        </tr>
+                        <tr>
+                            <td><strong>更正</strong></td>
+                            <td>重新同步学校数据；编辑备注与自定义课程；退出后重新登录以更新凭据</td>
+                            <td>学校系统内的信息需由你向学校申请更正</td>
+                        </tr>
+                        <tr>
+                            <td><strong>删除</strong></td>
+                            <td>退出登录删除凭据；清理缓存与日志；使用浏览器的「清除站点数据」删除全部本地数据</td>
+                            <td>删除后不可恢复；已同步至学校系统的数据不受影响</td>
+                        </tr>
+                        <tr>
+                            <td><strong>撤回同意</strong></td>
+                            <td>设置 → 数据收集与隐私政策 → 关闭「允许数据收集」</td>
+                            <td>撤回不影响撤回前已进行的处理</td>
+                        </tr>
+                        <tr>
+                            <td><strong>复制与转移</strong></td>
+                            <td>「导出到日历」生成 .ics 文件，通过浏览器下载或导入其他日历</td>
+                            <td>导出内容由你自行保管</td>
+                        </tr>
+                        <tr>
+                            <td><strong>解释说明</strong></td>
+                            <td>通过 <a class="inline" href="contact/index.html">QQ 反馈群</a>联系我们</td>
+                            <td>我们会在 7 个工作日内说明处理规则</td>
+                        </tr>
+                        <tr>
+                            <td><strong>投诉举报</strong></td>
+                            <td>先通过 QQ 群联系我们；也可向网信、市场监管等部门投诉</td>
+                            <td>我们承诺不因你行使权利而区别对待</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="note">
+                <p class="note-title">关于「删除」的边界</p>
+                <p>
+                    退出登录会删除浏览器中保存的<strong>学号、密码、账号类型与会话标识</strong>，但会保留课表 / 成绩缓存、
+                    备注、自定义课程与「上次登录学号」标记，以便你重新登录同一账号后继续使用。如果你要删除<strong>全部</strong>本地数据，
+                    请使用浏览器的「清除站点数据」。
+                </p>
+            </div>
+
+            <p>
+                我们将在收到你的请求后 <strong>7 个工作日内</strong>回复。对于无法满足的请求（例如需要删除第三方已依法留存的数据），
+                我们会说明原因。
+            </p>
+        </section>
+
+        <!-- ── 11 ── -->
+        <section class="card" id="security">
+            <h2><span class="num">11</span>数据安全</h2>
+
+            <h3>11.1 我们采取的措施</h3>
+            <ul>
+                <li><strong>传输加密</strong>：与学校系统、代理、CDN 的通信均使用 HTTPS，防止传输过程被窃听或篡改。</li>
+                <li><strong>浏览器隔离</strong>：本地数据受浏览器同源策略保护，其他站点无法读取。</li>
+                <li><strong>凭据最小化</strong>：仅保存登录所必需的学号、密码与账号类型；密码以混淆形式存储；退出登录立即删除凭据。</li>
+                <li><strong>会话隔离</strong>：更换账号时清空旧账号的会话，避免误用他人登录态。</li>
+                <li><strong>日志可控</strong>：诊断日志默认关闭，最多保留 3 天，可随时清空；导出前界面会提示内容可能包含敏感信息。</li>
+                <li><strong>服务端最小化</strong>：代理不建立用户数据库，不持久化账号、密码与课程内容；仅保存维持登录所需的会话 Cookie，并在退出登录或会话过期后清除。</li>
+            </ul>
+
+            <h3>11.2 你需要知道的局限</h3>
+            <ul>
+                <li>密码混淆<strong>不是加密</strong>。共用电脑、浏览器被他人使用或存在恶意扩展时，仍存在凭据被读取的风险。</li>
+                <li>学校系统的安全性由其运营方负责，我们无法保证学校系统不发生数据泄露或接口变更。</li>
+                <li>互联网传输不存在绝对安全。请避免在公共电脑上保存凭据，使用后及时清除站点数据。</li>
+            </ul>
+
+            <h3>11.3 安全事件处置</h3>
+            <p>
+                如发生或可能发生个人信息泄露、篡改、丢失，我们会立即启动调查与补救，评估影响范围，
+                并通过本页面、应用内公告或 QQ 群及时告知你可能受到的影响、已采取的措施与你可采取的防护建议；
+                依法需要向监管部门报告的，我们会按规定报告。
+            </p>
+        </section>
+
+        <!-- ── 12 ── -->
+        <section class="card" id="minors">
+            <h2><span class="num">12</span>未成年人保护</h2>
+            <p>
+                本应用面向南京理工大学及其他高校的在校学生，主要用户为已满 18 周岁的成年人。
+            </p>
+            <ul>
+                <li>我们不会主动收集未成年人的个人信息，也不针对未成年人进行营销或画像。</li>
+                <li><strong>不满 14 周岁</strong>的儿童不应使用本应用；如确需使用，应由监护人陪同阅读本政策并代为操作。</li>
+                <li><strong>已满 14 周岁、不满 18 周岁</strong>的未成年人，应在监护人同意和指导下使用；监护人可代为行使本政策项下的权利。</li>
+                <li>如监护人发现未成年人未经同意向我们提供了信息，可通过 QQ 反馈群联系我们，我们会尽快删除相关本地数据并停止处理。</li>
+            </ul>
+        </section>
+
+        <!-- ── 13 ── -->
+        <section class="card" id="updates">
+            <h2><span class="num">13</span>政策更新与通知</h2>
+
+            <h3>13.1 更新规则</h3>
+            <ul>
+                <li>本政策发生<strong>实质性变化</strong>时（例如新增第三方 SDK、改变数据流向、扩大收集范围、涉及新的跨境场景），我们会提升政策版本号，并更新页面顶部的生效日期。</li>
+                <li>仅做文字修正、链接调整等不影响你权益的变更时，我们会更新日期但不提升应用内政策版本号。</li>
+            </ul>
+
+            <h3>13.2 通知方式</h3>
+            <ul>
+                <li><strong>页面内弹窗</strong>：政策版本号提升后，下次进入网页版会再次展示《使用协议与隐私政策》弹窗，重新征求你的同意；在你重新同意前，应用不可继续使用。</li>
+                <li><strong>本页面公示</strong>：最新政策发布于本页面，并标注版本与生效日期。</li>
+                <li><strong>QQ 反馈群公告</strong>：群号 <a class="inline" href="contact/index.html">1095467610</a>，用于发布重要变更提醒。</li>
+            </ul>
+
+            <h3>13.3 继续使用的含义</h3>
+            <p>
+                对于不需要重新取得同意的非实质性更新，你在更新生效后继续使用本应用，即表示你接受修订后的政策。
+                对于依法需要重新取得同意的变更，我们不会以「继续使用」替代你的明确同意。
+            </p>
+        </section>
+
+        <!-- ── 14 ── -->
+        <section class="card" id="contact">
+            <h2><span class="num">14</span>联系我们</h2>
+            <p>
+                如对本政策有任何疑问、意见、投诉，或需要行使你的个人信息权利，请通过以下方式联系。
+                我们由个人开发者运营，相关请求由开发者本人处理。
+            </p>
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th style="width:26%;">渠道</th>
+                            <th>信息</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>QQ 反馈群</strong></td>
+                            <td><a class="inline" href="contact/index.html">1095467610</a>（梨课程反馈群 · 3 群）</td>
+                        </tr>
+                        <tr>
+                            <td><strong>官方网站</strong></td>
+                            <td><a class="inline" href="https://m.njust.store" target="_blank" rel="noopener">m.njust.store</a></td>
+                        </tr>
+                        <tr>
+                            <td><strong>应用内入口</strong></td>
+                            <td>设置 → 数据收集与隐私政策 → 隐私政策</td>
+                        </tr>
+                        <tr>
+                            <td><strong>响应时限</strong></td>
+                            <td>收到请求后 7 个工作日内回复；复杂请求最长不超过 15 个工作日，并会告知延期原因</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <p class="muted">
+                为避免冒充，我们可能要求你提供必要的验证信息（例如页面截图）。我们不会要求你提供密码。
+            </p>
+        </section>
+
+        <!-- ── 15 ── -->
+        <section class="card" id="definitions">
+            <h2><span class="num">15</span>术语说明</h2>
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th style="width:26%;">术语</th>
+                            <th>含义</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>个人信息</strong></td>
+                            <td>以电子或其他方式记录的与已识别或可识别的自然人有关的各种信息，不包括匿名化处理后的信息。</td>
+                        </tr>
+                        <tr>
+                            <td><strong>敏感个人信息</strong></td>
+                            <td>一旦泄露或非法使用，容易导致人格尊严受到侵害或人身、财产安全受到危害的个人信息，包括生物识别、宗教信仰、特定身份、医疗健康、金融账户、行踪轨迹等，以及不满十四周岁未成年人的个人信息。</td>
+                        </tr>
+                        <tr>
+                            <td><strong>去标识化</strong></td>
+                            <td>个人信息经过处理，使其在不借助额外信息的情况下无法识别特定自然人的过程。</td>
+                        </tr>
+                        <tr>
+                            <td><strong>匿名化</strong></td>
+                            <td>个人信息经过处理无法识别特定自然人且不能复原的过程。</td>
+                        </tr>
+                        <tr>
+                            <td><strong>使用情况记录</strong></td>
+                            <td>对用户与页面的交互行为（如点击、滚动、页面切换）进行记录，用于分析交互问题与改进产品。</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <p class="footer-note">
+            Copyright &copy; 2026 梨课程 · 为 NJUST 学子而生。保留所有权利。<br>
+            <a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener">津ICP备2023000212号-3</a>
+            &ensp;|&ensp;
+            <a href="privacy.html">政策入口</a>
+            &ensp;|&ensp;
+            <a href="index.html">返回首页</a>
+        </p>
+    </div>
+
+    <script>
+        (function () {
+            'use strict';
+
+            function markScrollableTables() {
+                if (window.innerWidth > 734) return;
+                Array.prototype.forEach.call(document.querySelectorAll('.table-wrap'), function (wrap) {
+                    var prev = wrap.previousElementSibling;
+                    var hasHint = prev && prev.classList && prev.classList.contains('table-hint');
+                    var scrollable = wrap.scrollWidth > wrap.clientWidth + 4;
+                    if (scrollable && !hasHint) {
+                        var hint = document.createElement('p');
+                        hint.className = 'table-hint';
+                        hint.textContent = '表格可左右滑动查看完整内容';
+                        wrap.parentNode.insertBefore(hint, wrap);
+                    } else if (!scrollable && hasHint) {
+                        prev.remove();
+                    }
+                });
+            }
+
+            markScrollableTables();
+            window.addEventListener('resize', markScrollableTables);
+        })();
+    </script>
+</body>
+
+</html>
