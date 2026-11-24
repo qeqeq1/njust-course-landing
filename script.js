@@ -1,25 +1,37 @@
-/* ── 动态版本 ── */
-(function () {
-    var btn     = document.getElementById('btn-download');
-    var span    = document.getElementById('apk-version');
-    var confirm = document.getElementById('dl-confirm');
-    var fallUrl = btn.getAttribute('data-href');
-    var fallVer = 'v1.1.8';
+/* 标记脚本可用：.reveal 的隐藏样式挂在 html.js 上，
+   脚本加载失败时内容照常可见，不会出现空白页。 */
+document.documentElement.classList.add('js');
 
-    function apply(url, ver) {
-        var u = url + (url.indexOf('?') === -1 ? '?from=landing' : '&from=landing');
-        btn.setAttribute('data-href', u);
-        confirm.href = u;
-        span.textContent = ver;
+/* ── 动态版本 ──
+   data-href 指向 GitHub releases/latest，永久有效；
+   latest.json 拉取成功后替换为 CDN 直链（更快），失败则保留兜底链接。
+   刻意不再写死某个版本号：写死会导致 CDN 抖动时把旧包推给用户。 */
+(function () {
+    var btn = document.getElementById('btn-download');
+    var span = document.getElementById('apk-version');
+    var confirmBtn = document.getElementById('dl-confirm');
+    if (!btn || !span) return;
+
+    function withFrom(url) {
+        if (!url) return url;
+        return url + (url.indexOf('?') === -1 ? '?' : '&') + 'from=landing';
     }
 
-    /* 先显示默认版本号，避免一直 loading */
-    apply(fallUrl, fallVer);
+    var fallUrl = btn.getAttribute('data-href');
+    if (fallUrl) {
+        var withParam = withFrom(fallUrl);
+        btn.setAttribute('data-href', withParam);
+        if (confirmBtn) confirmBtn.href = withParam;
+    }
+    span.textContent = '最新版';
 
     var controller = new AbortController();
     var timeout = setTimeout(function () { controller.abort(); }, 5000);
 
-    fetch('https://course-cdn.njust.store/latest.json', { signal: controller.signal })
+    fetch('https://course-cdn.njust.store/latest.json', {
+        signal: controller.signal,
+        cache: 'no-cache'
+    })
         .then(function (r) {
             if (!r.ok) throw new Error(r.status);
             return r.json();
@@ -27,158 +39,282 @@
         .then(function (data) {
             clearTimeout(timeout);
             if (data.download_url && data.version) {
-                apply(data.download_url, data.version);
+                var u = withFrom(data.download_url);
+                btn.setAttribute('data-href', u);
+                if (confirmBtn) confirmBtn.href = u;
+                span.textContent = data.version;
             }
         })
         .catch(function () {
-            /* 已显示默认版本号，静默失败 */
+            clearTimeout(timeout);
+            /* 保留「最新版」文案与 GitHub 兜底链接，静默失败 */
         });
 })();
 
 /* ── 下载确认弹窗 ── */
 (function () {
-    var modal   = document.getElementById('dl-modal');
+    var modal = document.getElementById('dl-modal');
     var trigger = document.getElementById('btn-download');
-    var confirm = document.getElementById('dl-confirm');
-    var cancel  = document.getElementById('dl-cancel');
+    var confirmBtn = document.getElementById('dl-confirm');
+    var cancel = document.getElementById('dl-cancel');
+    if (!modal || !trigger || !confirmBtn || !cancel) return;
 
     var fillTimer = null;
+    var lastFocus = null;
 
-    var countdown = 0;
+    function focusables() {
+        return modal.querySelectorAll(
+            'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+        );
+    }
 
-    trigger.addEventListener('click', function () {
-        var url = trigger.getAttribute('data-href') || confirm.href;
-        confirm.href = url;
-        confirm.classList.add('is-waiting');
+    function open() {
+        var url = trigger.getAttribute('data-href');
+        if (url) confirmBtn.href = url;
+
+        lastFocus = document.activeElement;
         modal.classList.add('open');
+        modal.setAttribute('aria-hidden', 'false');
         document.body.style.overflow = 'hidden';
 
-        countdown = 3;
-        confirm.textContent = '确认下载 (' + countdown + 's)';
+        confirmBtn.classList.add('is-waiting');
+        var countdown = 3;
+        confirmBtn.textContent = '确认下载 (' + countdown + 's)';
         fillTimer = setInterval(function () {
             countdown--;
             if (countdown <= 0) {
                 clearInterval(fillTimer);
-                confirm.classList.remove('is-waiting');
-                confirm.textContent = '确认下载';
+                confirmBtn.classList.remove('is-waiting');
+                confirmBtn.textContent = '确认下载';
             } else {
-                confirm.textContent = '确认下载 (' + countdown + 's)';
+                confirmBtn.textContent = '确认下载 (' + countdown + 's)';
             }
         }, 1000);
-    });
+
+        /* 默认焦点落在「取消」，避免回车直接触发下载 */
+        cancel.focus();
+    }
 
     function shut() {
         modal.classList.remove('open');
+        modal.setAttribute('aria-hidden', 'true');
         document.body.style.overflow = '';
         clearInterval(fillTimer);
-        confirm.classList.add('is-waiting');
-        confirm.textContent = '确认下载';
+        confirmBtn.classList.add('is-waiting');
+        confirmBtn.textContent = '确认下载';
+        if (lastFocus && typeof lastFocus.focus === 'function') lastFocus.focus();
     }
 
+    trigger.addEventListener('click', open);
     cancel.addEventListener('click', shut);
+
     modal.addEventListener('click', function (e) {
         if (e.target === modal) shut();
     });
+
+    /* 焦点陷阱：Tab 在对话框内循环 */
+    modal.addEventListener('keydown', function (e) {
+        if (e.key !== 'Tab') return;
+        var f = focusables();
+        if (!f.length) return;
+        var first = f[0];
+        var last = f[f.length - 1];
+        if (e.shiftKey && document.activeElement === first) {
+            e.preventDefault();
+            last.focus();
+        } else if (!e.shiftKey && document.activeElement === last) {
+            e.preventDefault();
+            first.focus();
+        }
+    });
+
     document.addEventListener('keydown', function (e) {
         if (e.key === 'Escape' && modal.classList.contains('open')) shut();
     });
 })();
 
-    /* ── iOS help tooltip ── */
-    (function () {
-        var tip = document.getElementById('ios-help');
-        var pop = document.getElementById('ios-help-popover');
-        if (!tip || !pop) return;
-        tip.addEventListener('click', function (e) {
-            e.stopPropagation();
-            var rect = tip.getBoundingClientRect();
-            var cx = rect.left + rect.width / 2;
-            pop.style.left = cx + 'px';
-            pop.style.bottom = (window.innerHeight - rect.top + 8) + 'px';
-
-            /* keep within viewport */
-            pop.style.display = 'block';
-            var pw = pop.offsetWidth;
-            pop.style.display = '';
-            var minX = pw / 2 + 8;
-            var maxX = window.innerWidth - pw / 2 - 8;
-            if (cx < minX) pop.style.left = minX + 'px';
-            else if (cx > maxX) pop.style.left = maxX + 'px';
-
-            pop.classList.toggle('show');
-        });
-        document.addEventListener('click', function () {
-            pop.classList.remove('show');
-        });
-        window.addEventListener('resize', function () {
-            pop.classList.remove('show');
-        });
-    })();
-
-/* ── Carousel ── */
+/* ── iOS 说明气泡 ── */
 (function () {
-    var track   = document.getElementById('showcase-track');
-    var dots    = document.querySelectorAll('#showcase-dots button');
-    var items   = track.querySelectorAll('.mockup-item');
-    var total   = items.length;
-    var index   = 0;
-    var startX  = 0;
-    var movedX  = 0;
+    var tip = document.getElementById('ios-help');
+    var pop = document.getElementById('ios-help-popover');
+    if (!tip || !pop) return;
+
+    function show() {
+        pop.style.display = 'block';
+        var pw = pop.offsetWidth;
+        pop.style.display = '';
+
+        var rect = tip.getBoundingClientRect();
+        var cx = rect.left + rect.width / 2;
+        var minX = pw / 2 + 8;
+        var maxX = window.innerWidth - pw / 2 - 8;
+        cx = Math.max(minX, Math.min(cx, maxX));
+
+        pop.style.left = cx + 'px';
+        pop.style.bottom = (window.innerHeight - rect.top + 8) + 'px';
+        pop.classList.add('show');
+        tip.setAttribute('aria-expanded', 'true');
+    }
+
+    function hide() {
+        pop.classList.remove('show');
+        tip.setAttribute('aria-expanded', 'false');
+    }
+
+    tip.addEventListener('click', function (e) {
+        e.stopPropagation();
+        if (pop.classList.contains('show')) hide();
+        else show();
+    });
+
+    document.addEventListener('click', hide);
+    window.addEventListener('resize', hide);
+    document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') hide();
+    });
+})();
+
+/* ── 截图轮播 ── */
+(function () {
+    var track = document.getElementById('showcase-track');
+    if (!track) return;
+
+    var items = track.querySelectorAll('.mockup-item');
+    var total = items.length;
+    if (total < 2) return;
+
+    var dotsWrap = document.getElementById('showcase-dots');
+    var dots = dotsWrap ? dotsWrap.querySelectorAll('button') : [];
+    var index = 0;
+    var startX = 0;
+    var movedX = 0;
     var dragging = false;
 
     function slideWidth() {
-        return items[0].offsetWidth; /* gap is 0 */
+        return items[0].getBoundingClientRect().width || 1;
     }
 
-    function goTo(i) {
+    function setActive(i) {
+        for (var k = 0; k < dots.length; k++) {
+            if (k === i) dots[k].setAttribute('aria-current', 'true');
+            else dots[k].removeAttribute('aria-current');
+        }
+    }
+
+    function goTo(i, animate) {
         index = Math.max(0, Math.min(i, total - 1));
+        if (animate === false) track.style.transition = 'none';
         track.style.transform = 'translateX(' + (-index * slideWidth()) + 'px)';
-        dots.forEach(function (d, j) {
-            d.classList.toggle('active', j === index);
-        });
+        if (animate === false) {
+            void track.offsetWidth; /* 强制回流，避免无过渡地连跳 */
+            track.style.transition = '';
+        }
+        setActive(index);
     }
 
-    dots.forEach(function (d) {
-        d.addEventListener('click', function () { goTo(parseInt(d.dataset.index)); });
-    });
+    for (var d = 0; d < dots.length; d++) {
+        (function (btn) {
+            btn.addEventListener('click', function () {
+                goTo(parseInt(btn.dataset.index, 10));
+            });
+        })(dots[d]);
+    }
 
-    /* ── Touch swipe ── */
+    /* ── 触摸拖动：跟手位移，松手吸附 ── */
     track.addEventListener('touchstart', function (e) {
         startX = e.touches[0].clientX;
+        movedX = 0;
         dragging = true;
         track.style.transition = 'none';
     }, { passive: true });
 
     track.addEventListener('touchmove', function (e) {
         if (!dragging) return;
-        movedX = e.touches[0].clientX - startX;
+        var dx = e.touches[0].clientX - startX;
+        movedX = dx;
+
+        /* 首尾越界时加阻尼，给出「到头了」的手感 */
+        if ((index === 0 && dx > 0) || (index === total - 1 && dx < 0)) {
+            dx *= 0.32;
+        }
+        track.style.transform = 'translateX(' + (-index * slideWidth() + dx) + 'px)';
     }, { passive: true });
 
     track.addEventListener('touchend', function () {
         if (!dragging) return;
         dragging = false;
         track.style.transition = '';
-        var threshold = slideWidth() * 0.25;
-        if (movedX < -threshold) { goTo(index + 1); }
-        else if (movedX > threshold) { goTo(index - 1); }
-        else { goTo(index); }
+
+        var threshold = slideWidth() * 0.22;
+        if (movedX < -threshold) goTo(index + 1);
+        else if (movedX > threshold) goTo(index - 1);
+        else goTo(index);
+
         movedX = 0;
     });
 
+    track.addEventListener('touchcancel', function () {
+        dragging = false;
+        track.style.transition = '';
+        goTo(index);
+    });
+
+    /* 断点切换：桌面变 grid，重置位移 */
     var mq = window.matchMedia('(min-width: 1100px)');
-    mq.addEventListener('change', function () {
+    function onModeChange() {
         track.style.transform = '';
         index = 0;
-        dots.forEach(function (d, j) { d.classList.toggle('active', j === 0); });
+        setActive(0);
+    }
+    if (mq.addEventListener) mq.addEventListener('change', onModeChange);
+    else if (mq.addListener) mq.addListener(onModeChange);
+
+    /* 窗口尺寸变化时校正当前位移 */
+    var resizeTimer = null;
+    window.addEventListener('resize', function () {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(function () { goTo(index, false); }, 150);
     });
+})();
+
+/* ── 滚动显现 ── */
+(function () {
+    var els = document.querySelectorAll('.reveal');
+    if (!els.length) return;
+
+    function showAll() {
+        for (var i = 0; i < els.length; i++) els[i].classList.add('in');
+    }
+
+    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduce || !('IntersectionObserver' in window)) {
+        showAll();
+        return;
+    }
+
+    var io = new IntersectionObserver(function (entries) {
+        for (var i = 0; i < entries.length; i++) {
+            if (entries[i].isIntersecting) {
+                entries[i].target.classList.add('in');
+                io.unobserve(entries[i].target);
+            }
+        }
+    }, { rootMargin: '0px 0px -6% 0px', threshold: 0.05 });
+
+    for (var i = 0; i < els.length; i++) io.observe(els[i]);
 })();
 
 /* ── 图片灯箱（Viewer.js）：支持滚轮 / 按钮 / 双击缩放与拖动 ── */
 (function () {
     if (typeof Viewer === 'undefined') return;
 
+    /* srcset 生效时 img.src 是压缩后的图，灯箱要取 data-full 上的原图 */
+    function sourceOf(img) {
+        return img.getAttribute('data-full') || img.currentSrc || img.src;
+    }
+
     var options = {
-        url: 'src',
+        url: sourceOf,
         zIndex: 10000,
         navbar: true,
         title: false,
@@ -232,7 +368,7 @@
     var modal = document.getElementById('dl-modal');
     if (modalCard && modalLink && modalCard.querySelector('img')) {
         var modalViewer = new Viewer(modalCard, {
-            url: 'src',
+            url: sourceOf,
             zIndex: 10000,
             hidden: function () {
                 /* 关闭灯箱后恢复下载弹窗 */
